@@ -1,5 +1,9 @@
-export default function Button({handleAction}) {
+import "../assets/button.css"
+
+
+export default function Button({handleAction, showModal, setShowModal}) {
   return (
-    <button onClick={handleAction}>+</button>
+    <button className="button" onClick={() => {setShowModal(!showModal); handleAction()}}>+</button>
+    
   )
 }

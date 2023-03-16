@@ -1,0 +1,13 @@
+.element{
+    background: red;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-sizing: border-box; /*Fuerza al padding a no sumarse al width y el height*/
+    cursor: pointer;
+    transition: 300ms;
+    height: 100px;
+    width: 100px;
+}
+.button:hover{
+    background-color: orange;
+}

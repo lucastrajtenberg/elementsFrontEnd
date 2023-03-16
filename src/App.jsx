@@ -1,59 +1,60 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import Button from "./components/Button"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Button from "./components/Button";
+import Element from "./components/Element";
+import "./assets/app.css";
 
-const elementsURL = "http://localhost:3000/elements"
+const elementsURL = "http://localhost:3000/elements";
 
 function App() {
-  
-  const [elements, setElements] = useState([])
-
+  const [elements, setElements] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const addElement = () => {
     const payload = {
       name: "Manu",
-    description: "Pituso",
-    atomicNumber: 1,
-    mass: 1,
-    abbreviation: "Man"
-    }
+      description: "Pituso",
+      atomicNumber: 1,
+      mass: 1,
+      abbreviation: "Man",
+    };
     axios.post(`${elementsURL}/new`, payload).then((res) => {
-      getElements()
-    })
-  }
+      getElements();
+    });
+  };
 
   const getElements = () => {
     axios.get(elementsURL).then((res) => {
-      setElements(res.data)
-    })
-  }
+      setElements(res.data);
+    });
+  };
 
   const deleteElement = (id) => {
-    console.log('deleteElemnt')
+    console.log("deleteElemnt");
     axios.delete(`${elementsURL}/delete/${id}`).then((res) => {
-      getElements()
-    })
-  }
+      getElements();
+    });
+  };
 
   useEffect(() => {
-    getElements()
-  }, [])
+    getElements();
+  }, []);
   useEffect(() => {
-    console.log('hola', elements)
-  }, [elements])
+    console.log("hola", elements);
+  }, [elements]);
   return (
-    <div className="App">
+    <div className="app">
+      {showModal && <div className="modal" onClick={() => {setShowModal(!showModal)}}></div>}
       <h1>soy yo</h1>
-      <ul>{elements.map((element) => {
-        return (
-          <li>
-            <p>{element.name}</p>
-            <button onClick={() => deleteElement(element._id)}>borrar</button>
-            </li>
-        )
-      })}</ul>
-      <Button handleAction={addElement}/>
+      <div className="container">
+      <ul className="list">
+        {elements.map((element) => {
+          return <Element element={element} deleteElement={deleteElement} />;
+        })}
+      </ul>
+      <Button handleAction={addElement} showModal={showModal} setShowModal={setShowModal}/>
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
