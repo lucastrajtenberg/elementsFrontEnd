@@ -12,14 +12,6 @@
     gap: 10px;
     align-items: center;
 }
-.modal{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 500px;
-    height: 500px;
-    background-color: brown;
-}
 .app{
     position: relative;
 }
