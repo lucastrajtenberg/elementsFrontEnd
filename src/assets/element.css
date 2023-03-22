@@ -5,9 +5,17 @@
     box-sizing: border-box; /*Fuerza al padding a no sumarse al width y el height*/
     cursor: pointer;
     transition: 300ms;
-    height: 100px;
-    width: 100px;
+    height: 125px;
+    width: 125px;
 }
 .button:hover{
     background-color: orange;
+}
+.element_abbreviation{
+    font-size: 24px;
+}
+p{
+    padding: 0;
+    margin: 0;
+    line-height: 1;
 }

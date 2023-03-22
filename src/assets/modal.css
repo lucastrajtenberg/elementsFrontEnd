@@ -1,11 +1,11 @@
 .modal{
     position: absolute;
-    top: 50%;
-    left: 50%;
+    border-radius: 20px;
     width: max-content;
     height: max-content;
-    background-color: brown;
+    background-color: red;
     padding: 5px;
+    border: 2px black solid;
 }
 .form{
     display: flex;
@@ -16,4 +16,10 @@
     flex-direction: column;
     border-radius: 20px;
     padding: 10px 20px;
+}
+.xButton{
+    border-radius: 20px;
+}
+.submitButton{
+    border-radius: 20px;
 }

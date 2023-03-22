@@ -2,37 +2,27 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from "./components/Button";
 import Element from "./components/Element";
-import Modal from "./components/Modal"
-import {addElement, getElements, deleteElement} from "./utils/handleElement"
+import Modal from "./components/Modal";
 import "./assets/app.css";
+import { useElementsContext } from "./context/ElementsContext";
 
 function App() {
-  const [elements, setElements] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const { elements, addElement } = useElementsContext();
+  const [showModal, setShowModal] = useState({open:false, action:''});
 
-  const getElementsData = async () => {
-    const response = await getElements();
-    console.log(response)
-    setElements(response.data);
-  }
+  console.log(elements);
 
-  useEffect(() => {
-    getElementsData()
-  }, []);
   return (
     <div className="app">
-      {showModal && (
-        <Modal showModal={showModal} setShowModal={setShowModal}/>
-      )}
+      {showModal.open && <Modal showModal={showModal} setShowModal={setShowModal} />}
       <h1>soy yo</h1>
       <div className="container">
         <ul className="list">
-          {elements.map((element) => {
-            return <Element element={element} key={element.id} />;
+          {elements.map((element, index) => {
+            return <Element element={element} key={element._id} index={index} showModal={showModal} setShowModal={setShowModal}/>;
           })}
         </ul>
         <Button
-          handleAction={addElement}
           showModal={showModal}
           setShowModal={setShowModal}
         />
